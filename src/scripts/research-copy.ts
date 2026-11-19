@@ -1,5 +1,7 @@
 export const labels = {
   en: {
+    readingTitle: "Full research notes", readingIntro: "Enter your passphrase to read the encrypted notes in this browser.",
+    readingPassword: "Reading passphrase", readingUnlock: "Unlock", readingLock: "Lock",
     handbook: "Read the methodology handbook", themeLabel: "Appearance", themeSystem: "System", themeLight: "Light", themeDark: "Dark",
     skip: "Skip to content", brand: "Execution Cost Lab", nav: "Sections", examples: "Interactive examples",
     research: "Research", kicker: "Execution research", title: "From a trade plan to a filled order",
@@ -9,6 +11,8 @@ export const labels = {
     account: "Account constraints", evidence: "Methods and evidence", boundary: "Evidence limit", detail: "Method and interpretation", top: "Back to top",
   },
   "zh-CN": {
+    readingTitle: "完整研究笔记", readingIntro: "输入口令，在当前浏览器解锁研究资料。",
+    readingPassword: "阅读口令", readingUnlock: "解锁", readingLock: "锁定",
     handbook: "阅读交易成本研究手册", themeLabel: "外观", themeSystem: "跟随系统", themeLight: "浅色", themeDark: "深色",
     skip: "跳到正文", brand: "交易执行实验室", nav: "页面章节", examples: "交互案例",
     research: "研究总览", kicker: "交易执行研究", title: "从交易计划到真正成交",

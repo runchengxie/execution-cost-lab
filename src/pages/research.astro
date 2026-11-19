@@ -1,5 +1,6 @@
 ---
 import '../styles/styles.css';
+import EncryptedReading from '../components/EncryptedReading.astro';
 import ThemeControl from '../components/ThemeControl.astro';
 ---
 <!doctype html>
@@ -24,6 +25,7 @@ import ThemeControl from '../components/ThemeControl.astro';
     <h1 data-copy="title">From a trade plan to a filled order</h1>
     <p class="lead" data-copy="lead">An atlas of the questions, findings, and evidence limits in an execution-cost study.</p>
     <a class="atlas-link handbook-link" href="./handbook.html" data-copy="handbook">Read the methodology handbook</a>
+    <a class="atlas-link handbook-link" href="#private-reading" data-copy="readingTitle">Full research notes</a>
   </div></div>
   <section id="results" class="frame section">
     <div class="section-head"><h2 data-copy="results">Explore the research</h2><p data-copy="scope">Historical findings are presented as qualitative observations. The linked interactive examples use invented inputs.</p></div>
@@ -36,6 +38,7 @@ import ThemeControl from '../components/ThemeControl.astro';
     </select></label></div>
     <div id="cards" class="atlas-grid" aria-live="polite"></div>
   </section>
+  <EncryptedReading />
 </main>
 <footer class="frame footer"><a href="./index.html" data-copy="examples">Interactive examples</a><a href="#content" data-copy="top">Back to top</a></footer>
 </body>
