@@ -1,4 +1,5 @@
 export const english = {
+  readingTitle: "Full research notes",
   worked: "Worked example",
   cashWorked: "The default example starts with CNY 6,000 of spendable cash. The CNY 12,000 sale is booked but pending. At CNY 10 per share the account can buy 600 out of 1,800 shares. Switch the allocation to see how those 600 shares are distributed.",
   capacityWorked: "At 5% participation, 52,000 observed shares provide a budget of 2,600 shares in five minutes, or 26% of a 10,000-share order. The 30-minute budget fills 7,800 shares under the same assumption.",
@@ -32,6 +33,7 @@ export const english = {
 };
 
 export const chinese = {
+  readingTitle: "完整研究笔记",
   worked: "用一组数字算一遍",
   cashWorked: "默认情景里，可用现金为 6,000 元。卖出回款 12,000 元已入账，还没到可用时间。按每股 10 元算，1,800 股计划里只能买 600 股。切换分配方式，可以看到这 600 股如何分给三只股票。",
   capacityWorked: "参与率设为 5%，前五分钟市场成交 52,000 股，模拟订单最多能做 2,600 股，占 10,000 股计划的 26%。同样口径下，三十分钟能做 7,800 股。",
