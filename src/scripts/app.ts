@@ -1,5 +1,6 @@
 import { capacity, cashScenario, costScenario } from "./model.ts";
 import { english, chinese } from "./copy.ts";
+import { renderResearch } from "./research.ts";
 
 function get(id: string): HTMLElement {
   const element = document.getElementById(id);
@@ -14,7 +15,7 @@ function valueOf(id: string): string {
   }
   return element.value;
 }
-let locale = localStorage.getItem("execution-locale") === "zh-CN" ? "zh-CN" : "en";
+let locale: "en" | "zh-CN" = localStorage.getItem("execution-locale") === "zh-CN" ? "zh-CN" : "en";
 let terms: typeof english;
 let number: Intl.NumberFormat;
 let currency: Intl.NumberFormat;
@@ -33,6 +34,7 @@ function copy() {
   });
   get("language").textContent = locale === "en" ? "简体中文" : "English";
   get("language").lang = locale === "en" ? "zh-CN" : "en";
+  renderResearch(locale);
 }
 
 function stat(label: string, value: string) {
@@ -99,5 +101,35 @@ get("language").addEventListener("click", () => {
 for (const id of ["release", "allocation", "size", "participation", "comparison"]) {
   get(id).addEventListener("change", display);
 }
+get("topic").addEventListener("change", () => renderResearch(locale));
+
+function revealHandbookLink() {
+  let chapterId: string;
+  try {
+    chapterId = decodeURIComponent(location.hash.slice(1));
+  } catch {
+    return;
+  }
+  const target = document.getElementById(chapterId);
+  const handbook = target?.closest<HTMLDetailsElement>("#handbook");
+  if (!target || !handbook) return;
+  handbook.open = true;
+  const edition = target.closest<HTMLElement>("[data-edition]")?.dataset.edition;
+  if ((edition === "en" || edition === "zh-CN") && edition !== locale) {
+    locale = edition;
+    copy();
+    display();
+  }
+  target.scrollIntoView();
+}
+
 copy();
 display();
+document.querySelectorAll('a[href="#handbook"]').forEach((link) => {
+  link.addEventListener("click", () => {
+    const handbook = get("handbook");
+    if (handbook instanceof HTMLDetailsElement) handbook.open = true;
+  });
+});
+window.addEventListener("hashchange", revealHandbookLink);
+revealHandbookLink();

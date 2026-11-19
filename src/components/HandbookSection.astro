@@ -1,0 +1,30 @@
+---
+import * as english from '../content/handbook.en.md';
+import * as chinese from '../content/handbook.zh-CN.md';
+
+const editions = [
+  { lang: 'en', title: 'How to measure execution costs', intro: 'Seven chapters on fees, missed trades, order timing, capacity, and evidence. All numerical examples are synthetic.', contents: 'Contents', edition: english },
+  { lang: 'zh-CN', title: '交易成本研究手册', intro: '七章讲清手续费、机会成本、开盘执行、组合容量和验证。表里的数字都是合成算例。', contents: '目录', edition: chinese },
+];
+---
+<details id="handbook" class="handbook-section">
+  <summary class="frame">
+    <span data-edition="en">Methodology handbook</span>
+    <span data-edition="zh-CN">交易成本研究手册</span>
+  </summary>
+    {editions.map(({lang, title, intro, contents, edition}) => (
+      <div data-edition={lang} lang={lang}>
+        <div class="frame handbook-intro">
+          <h2>{title}</h2>
+          <p class="lead">{intro}</p>
+        </div>
+        <div class="frame handbook-layout">
+          <nav class="handbook-nav" aria-label={contents}>
+            <strong>{contents}</strong>
+            <ol>{edition.getHeadings().map(({slug, text}) => <li><a href={'#' + slug}>{text}</a></li>)}</ol>
+          </nav>
+          <article class="handbook-prose"><edition.Content /></article>
+        </div>
+      </div>
+    ))}
+</details>

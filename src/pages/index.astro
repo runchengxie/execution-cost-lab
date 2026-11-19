@@ -1,5 +1,8 @@
 ---
 import '../styles/styles.css';
+import ResearchSection from '../components/ResearchSection.astro';
+import HandbookSection from '../components/HandbookSection.astro';
+import EncryptedReading from '../components/EncryptedReading.astro';
 import SiteNav from '../components/SiteNav.astro';
 import ThemeControl from '../components/ThemeControl.astro';
 ---
@@ -16,12 +19,12 @@ import ThemeControl from '../components/ThemeControl.astro';
 <a class="skip" href="#content" data-copy="skip">Skip to content</a>
 <header class="top"><div class="frame top-inner">
   <a class="brand" href="#content" data-copy="brand">Execution Cost Lab</a>
-  <SiteNav current="examples" />
+  <SiteNav />
   <div class="preferences"><ThemeControl />
   <button id="language" type="button" lang="zh-CN">简体中文</button></div>
 </div></header>
 <main id="content">
-  <div class="intro"><div class="frame">
+  <div class="intro" id="examples"><div class="frame">
     <h1 data-copy="title">Why large orders go unfinished</h1>
     <p class="lead" data-copy="lead">Market volume, available cash, and time each set a different limit. Three synthetic examples show what happens when a trading plan meets those limits.</p>
     <nav class="example-links" aria-label="Examples" data-label="sections">
@@ -29,9 +32,9 @@ import ThemeControl from '../components/ThemeControl.astro';
       <a href="#capacity" data-copy="navCapacity">Capacity</a>
       <a href="#cost" data-copy="navCost">Cost</a>
     </nav>
-    <a class="atlas-link" href="./research.html" data-copy="openAtlas">Explore the research</a>
-    <a class="atlas-link handbook-link" href="./research.html#private-reading" data-copy="readingTitle">Full research notes</a>
-    <a class="atlas-link handbook-link" href="./handbook.html" data-copy="handbook">Read the methodology handbook</a>
+    <a class="atlas-link" href="#research" data-copy="openAtlas">Explore the research</a>
+    <a class="atlas-link handbook-link" href="#private-reading" data-copy="readingTitle">Full research notes</a>
+    <a class="atlas-link handbook-link" href="#handbook" data-copy="handbook">Read the methodology handbook</a>
   </div></div>
   <section id="cash" class="frame section example">
     <div class="section-head"><h2 data-copy="cashTitle">Cash on the ledger, cash you can use</h2><p data-copy="cashIntro">A sale is booked and three buy orders share one account. Change when the proceeds become usable and how the account divides its budget.</p></div>
@@ -63,6 +66,9 @@ import ThemeControl from '../components/ThemeControl.astro';
   <section class="method">
     <div class="frame"><h2 data-copy="methodTitle">What is being measured?</h2><p data-copy="methodText">All inputs are invented for teaching. Completion is filled shares divided by requested shares. The budget model assumes 6 basis points in fees for the cost example. Price differences and terminal movement are scenario inputs. No real-order or market-impact estimate is made.</p><a href="https://github.com/runchengxie/execution-cost-lab" data-copy="source">Source code and reproduction</a></div>
   </section>
+  <ResearchSection />
+  <EncryptedReading />
+  <HandbookSection />
 </main>
 <footer class="frame footer"><span data-copy="brand">Execution Cost Lab</span><a href="#content" data-copy="top">Back to top</a></footer>
 </body>

@@ -190,3 +190,7 @@ html[lang="zh-CN"] [data-edition="en"] { display: none; }
   text-decoration: underline;
 }
 .example-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: .92rem; }
+
+.handbook-section { max-width: none; padding-block: 20px; }
+.handbook-section > summary { color: var(--ink); font: 600 1.45rem/1.3 var(--heading); }
+.handbook-intro { padding-top: 22px; }

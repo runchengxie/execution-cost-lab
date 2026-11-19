@@ -1,0 +1,23 @@
+---
+interface Props { section: string; }
+const { section } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Execution Cost Lab</title>
+</head>
+<body>
+  <a id="destination" href={'./#' + section}>Continue to Execution Cost Lab · 前往交易执行实验室</a>
+  <script>
+    const link = document.querySelector<HTMLAnchorElement>("#destination")!;
+    const url = new URL(link.href);
+    const hash = location.hash;
+    if (hash && hash !== "#content" && hash !== "#unlock" && hash !== "#reader") url.hash = hash;
+    location.replace(url);
+  </script>
+</body>
+</html>

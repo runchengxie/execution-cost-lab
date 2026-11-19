@@ -5,21 +5,21 @@ const zh = lang === "zh-CN";
 const bundle = import.meta.env.BASE_URL.replace(/\/$/, "") + "/reading.enc";
 ---
   <section class="frame section" id="private-reading" aria-labelledby="reading-title">
-    <h2 id="reading-title" data-copy="readingTitle">{zh ? "完整研究笔记" : "Full research notes"}</h2>
+    <h2 id="reading-title" data-research-copy="readingTitle">{zh ? "完整研究笔记" : "Full research notes"}</h2>
     <section id="unlock">
-      <p class="lead" data-copy="readingIntro">{zh ? "输入口令，在当前浏览器解锁研究资料。" : "Enter your passphrase to read the encrypted notes in this browser."}</p>
+      <p class="lead" data-research-copy="readingIntro">{zh ? "输入口令，在当前浏览器解锁研究资料。" : "Enter your passphrase to read the encrypted notes in this browser."}</p>
       <form id="reading-form" data-bundle={bundle}>
         <div class="controls">
-          <label><span data-copy="readingPassword">{zh ? "阅读口令" : "Reading passphrase"}</span>
+          <label><span data-research-copy="readingPassword">{zh ? "阅读口令" : "Reading passphrase"}</span>
             <input type="password" id="reading-password" required autocomplete="off" spellcheck="false">
           </label>
         </div>
-        <button type="submit" data-copy="readingUnlock">{zh ? "解锁" : "Unlock"}</button>
+        <button type="submit" data-research-copy="readingUnlock">{zh ? "解锁" : "Unlock"}</button>
         <p role="status" id="reading-status"></p>
       </form>
     </section>
     <section id="reader" hidden>
-      <button type="button" id="reading-lock" data-copy="readingLock">{zh ? "锁定" : "Lock"}</button>
+      <button type="button" id="reading-lock" data-research-copy="readingLock">{zh ? "锁定" : "Lock"}</button>
       <iframe id="reading-document" title={zh ? "加密研究笔记" : "Encrypted research notes"} sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
     </section>
   </section>

@@ -1,9 +1,7 @@
 import { labels, studies } from "./research-copy.ts";
 
-const language = document.getElementById("language")!;
 const filter = document.querySelector<HTMLSelectElement>("#topic")!;
 const container = document.getElementById("cards")!;
-let locale: keyof typeof labels = localStorage.getItem("execution-locale") === "zh-CN" ? "zh-CN" : "en";
 
 function line<K extends keyof HTMLElementTagNameMap>(tag: K, text: string, className?: string) {
   const element = document.createElement(tag);
@@ -12,14 +10,11 @@ function line<K extends keyof HTMLElementTagNameMap>(tag: K, text: string, class
   return element;
 }
 
-function render() {
+export function renderResearch(locale: keyof typeof labels) {
   const copy = labels[locale];
-  document.documentElement.lang = locale;
-  document.title = copy.research + " · " + copy.brand;
-  document.querySelectorAll<HTMLElement>("[data-copy]").forEach((item) => { item.textContent = copy[item.dataset.copy as keyof typeof copy]; });
-  document.querySelectorAll<HTMLElement>("[data-label]").forEach((item) => { item.setAttribute("aria-label", copy[item.dataset.label as keyof typeof copy]); });
-  language.textContent = locale === "en" ? "简体中文" : "English";
-  language.lang = locale === "en" ? "zh-CN" : "en";
+  document.querySelectorAll<HTMLElement>("[data-research-copy]").forEach((item) => {
+    item.textContent = copy[item.dataset.researchCopy as keyof typeof copy];
+  });
   container.replaceChildren();
   for (const [topic, example, en, zh] of studies) {
     if (filter.value !== "all" && topic !== filter.value) continue;
@@ -34,16 +29,9 @@ function render() {
     card.append(boundary, details);
     if (example) {
       const link = line("a", copy.examples);
-      link.href = "./index.html#" + example;
+      link.href = "#" + example;
       card.append(link);
     }
     container.append(card);
   }
 }
-filter.addEventListener("change", render);
-language.addEventListener("click", () => {
-  locale = locale === "en" ? "zh-CN" : "en";
-  localStorage.setItem("execution-locale", locale);
-  render();
-});
-render();
