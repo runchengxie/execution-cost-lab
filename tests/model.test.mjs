@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { capacity, cashScenario, costScenario } from "../docs/model.mjs";
+import { capacity, cashScenario, costScenario } from "../src/scripts/model.ts";
 
 test("cash allocation conserves available money and respects all targets", () => {
   for (const delayed of [false, true]) {

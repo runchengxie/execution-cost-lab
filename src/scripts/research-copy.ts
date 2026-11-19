@@ -51,4 +51,4 @@ export const studies = [
   ["evidence", null,
     ["Multiple paths and model validation", "Synthetic paths check execution and optimization mechanics. A time split checks a fixed rule on later observations. Always compare an empirical model with a simple baseline.", "Previously inspected dates stay historical, even after a new split. Own-impact calibration needs linked orders, quotes and fills."],
     ["多路径、优化与新日期验证", "合成路径用来验收撮合和优化机制，时间切分用来检验固定规则。经验模型要与简单基准比较。", "已接触日期仍属历史探索。自身冲击校准需要配对的委托、行情和成交。"]],
-];
+] as const;

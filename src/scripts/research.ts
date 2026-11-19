@@ -1,11 +1,11 @@
-import { labels, studies } from "./research-copy.mjs";
+import { labels, studies } from "./research-copy.ts";
 
-const language = document.getElementById("language");
-const filter = document.getElementById("topic");
-const container = document.getElementById("cards");
-let locale = localStorage.getItem("execution-locale") === "zh-CN" ? "zh-CN" : "en";
+const language = document.getElementById("language")!;
+const filter = document.querySelector<HTMLSelectElement>("#topic")!;
+const container = document.getElementById("cards")!;
+let locale: keyof typeof labels = localStorage.getItem("execution-locale") === "zh-CN" ? "zh-CN" : "en";
 
-function line(tag, text, className) {
+function line<K extends keyof HTMLElementTagNameMap>(tag: K, text: string, className?: string) {
   const element = document.createElement(tag);
   element.textContent = text;
   if (className) element.className = className;
@@ -16,8 +16,8 @@ function render() {
   const copy = labels[locale];
   document.documentElement.lang = locale;
   document.title = copy.research + " · " + copy.brand;
-  document.querySelectorAll("[data-copy]").forEach((item) => { item.textContent = copy[item.dataset.copy]; });
-  document.querySelectorAll("[data-label]").forEach((item) => { item.setAttribute("aria-label", copy[item.dataset.label]); });
+  document.querySelectorAll<HTMLElement>("[data-copy]").forEach((item) => { item.textContent = copy[item.dataset.copy as keyof typeof copy]; });
+  document.querySelectorAll<HTMLElement>("[data-label]").forEach((item) => { item.setAttribute("aria-label", copy[item.dataset.label as keyof typeof copy]); });
   language.textContent = locale === "en" ? "简体中文" : "English";
   language.lang = locale === "en" ? "zh-CN" : "en";
   container.replaceChildren();
