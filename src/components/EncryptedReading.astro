@@ -39,11 +39,32 @@ const bundle = import.meta.env.BASE_URL.replace(/\/$/, "") + "/reading.enc";
 
     let documentUrl: string | undefined;
 
+    const offsetKey = (locale: string) => `execution-reading-v1-offset-${locale}`;
+
     function syncReadingLanguage() {
       const locale = document.documentElement.lang === "zh-CN" ? "zh-CN" : "en";
       frame.title = locale === "zh-CN" ? "加密研究笔记" : "Encrypted research notes";
-      if (documentUrl) frame.contentWindow?.postMessage({ readingLocale: locale }, "*");
+      if (!documentUrl) return;
+      let readingOffset = 0;
+      try {
+        readingOffset = Number(localStorage.getItem(offsetKey(locale))) || 0;
+      } catch {
+        // Reading still works with storage disabled.
+      }
+      frame.contentWindow?.postMessage({ readingLocale: locale, readingOffset }, "*");
     }
+
+    window.addEventListener("message", (event) => {
+      if (!documentUrl || event.source !== frame.contentWindow || event.origin !== "null") return;
+      const { readingLocale, readingOffset } = event.data ?? {};
+      if (readingLocale !== "en" && readingLocale !== "zh-CN") return;
+      if (!Number.isSafeInteger(readingOffset) || readingOffset < 0 || readingOffset > 10_000_000) return;
+      try {
+        localStorage.setItem(offsetKey(readingLocale), String(readingOffset));
+      } catch {
+        // Reading still works with storage disabled.
+      }
+    });
 
     frame.addEventListener("load", syncReadingLanguage);
     new MutationObserver(syncReadingLanguage).observe(document.documentElement, {
