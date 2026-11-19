@@ -1,5 +1,6 @@
 export const english = {
   skip: "Skip to content", brand: "Execution Cost Lab", sections: "Sections",
+  research: "Research", openAtlas: "Explore the research",
   navCash: "Cash", navCapacity: "Capacity", navCost: "Cost",
   kicker: "An interactive execution study", title: "Why large orders go unfinished",
   lead: "Market volume, available cash, and time each set a different limit. Three synthetic examples show what happens when a trading plan meets those limits.",
@@ -27,6 +28,7 @@ export const english = {
 
 export const chinese = {
   skip: "跳到正文", brand: "交易执行实验室", sections: "页面章节",
+  research: "研究总览", openAtlas: "浏览研究总览",
   navCash: "可用资金", navCapacity: "成交容量", navCost: "交易成本",
   kicker: "交互式交易执行案例", title: "大额订单为什么做不完",
   lead: "市场成交量、可用资金和执行时间，都会限制一批订单能做多少。用三个合成案例看看这些限制如何影响结果。",
