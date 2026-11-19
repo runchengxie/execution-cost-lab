@@ -1,0 +1,88 @@
+---
+import '../styles/styles.css';
+import ThemeControl from '../components/ThemeControl.astro';
+import * as english from '../content/handbook.en.md';
+import * as chinese from '../content/handbook.zh-CN.md';
+
+const editions = [
+  { lang: 'en', title: 'How to measure execution costs', intro: 'Seven chapters on fees, missed trades, order timing, capacity, and evidence. All numerical examples are synthetic.', contents: 'Contents', edition: english },
+  { lang: 'zh-CN', title: '交易成本研究手册', intro: '七章讲清手续费、机会成本、开盘执行、组合容量和验证。表里的数字都是合成算例。', contents: '目录', edition: chinese },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Detailed methodology and worked examples for measuring trading execution costs.">
+  <title>How to measure execution costs · Execution Cost Lab</title>
+</head>
+<body>
+  <a class="skip" href="#content"><span data-edition="en">Skip to content</span><span data-edition="zh-CN">跳到正文</span></a>
+  <header class="top"><div class="frame top-inner">
+    <a class="brand" href="./index.html"><span data-edition="en">Execution Cost Lab</span><span data-edition="zh-CN">交易执行实验室</span></a>
+    <nav aria-label="Research">
+      <a href="./index.html"><span data-edition="en">Interactive examples</span><span data-edition="zh-CN">交互案例</span></a>
+      <a href="./research.html"><span data-edition="en">Research atlas</span><span data-edition="zh-CN">研究总览</span></a>
+    </nav>
+    <div class="preferences"><ThemeControl />
+      <button id="language" type="button" lang="zh-CN">简体中文</button>
+    </div>
+  </div></header>
+  <main id="content">
+    {editions.map(({lang, title, intro, contents, edition}) => (
+      <div data-edition={lang} lang={lang}>
+        <div class="intro"><div class="frame">
+          <h1>{title}</h1>
+          <p class="lead">{intro}</p>
+        </div></div>
+        <div class="frame handbook-layout">
+          <nav class="handbook-nav" aria-label={contents}>
+            <strong>{contents}</strong>
+            <ol>{edition.getHeadings().map(({slug, text}) => <li><a href={'#' + slug}>{text}</a></li>)}</ol>
+          </nav>
+          <article class="handbook-prose"><edition.Content /></article>
+        </div>
+      </div>
+    ))}
+  </main>
+  <footer class="frame footer">
+    <a href="./research.html"><span data-edition="en">Research atlas</span><span data-edition="zh-CN">研究总览</span></a>
+    <a href="#content"><span data-edition="en">Back to top</span><span data-edition="zh-CN">回到顶部</span></a>
+  </footer>
+  <script>
+    const button = document.querySelector<HTMLButtonElement>("#language")!;
+    const options = {
+      en: { button: "简体中文", alternate: "zh-CN", title: "How to measure execution costs · Execution Cost Lab", theme: ["Appearance", "System", "Light", "Dark"] },
+      "zh-CN": { button: "English", alternate: "en", title: "交易成本研究手册 · 交易执行实验室", theme: ["外观", "跟随系统", "浅色", "深色"] },
+    };
+    let locale: keyof typeof options = localStorage.getItem("execution-locale") === "zh-CN" ? "zh-CN" : "en";
+    let chapter: HTMLElement | null = null;
+    try {
+      chapter = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    } catch {
+      // Ignore malformed fragments.
+    }
+    const linkedEdition = chapter?.closest<HTMLElement>("[data-edition]")?.dataset.edition;
+    if (linkedEdition === "en" || linkedEdition === "zh-CN") locale = linkedEdition;
+    function render() {
+      const copy = options[locale];
+      document.documentElement.lang = locale;
+      document.title = copy.title;
+      document.querySelector(".top nav")?.setAttribute("aria-label", locale === "en" ? "Research" : "研究");
+      button.lang = copy.alternate;
+      button.textContent = copy.button;
+      document.querySelectorAll(".theme-control [data-copy]").forEach((item, index) => {
+        item.textContent = copy.theme[index];
+      });
+    }
+    button.addEventListener("click", () => {
+      locale = locale === "en" ? "zh-CN" : "en";
+      localStorage.setItem("execution-locale", locale);
+      render();
+    });
+    render();
+    chapter?.scrollIntoView();
+  </script>
+</body>
+</html>
