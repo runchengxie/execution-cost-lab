@@ -39,11 +39,22 @@ const bundle = import.meta.env.BASE_URL.replace(/\/$/, "") + "/reading.enc";
 
     let documentUrl: string | undefined;
 
+    function syncReadingLanguage() {
+      const locale = document.documentElement.lang === "zh-CN" ? "zh-CN" : "en";
+      frame.title = locale === "zh-CN" ? "加密研究笔记" : "Encrypted research notes";
+      if (documentUrl) frame.contentWindow?.postMessage({ readingLocale: locale }, "*");
+    }
+
+    frame.addEventListener("load", syncReadingLanguage);
+    new MutationObserver(syncReadingLanguage).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       submit.disabled = true;
       const zh = document.documentElement.lang === "zh-CN";
-      frame.title = zh ? "加密研究笔记" : "Encrypted research notes";
       status.textContent = zh ? "正在解锁…" : "Unlocking…";
       try {
         const response = await fetch(form.dataset.bundle!, { credentials: "omit" });
