@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An illustrated map of execution-cost and trading-capacity research.">
+<title>Research Atlas · Execution Cost Lab</title>
+<link rel="stylesheet" href="./styles.css">
+<script type="module" src="./research.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#content" data-copy="skip">Skip to content</a>
+<header class="top"><div class="frame top-inner">
+  <a class="brand" href="./index.html" data-copy="brand">Execution Cost Lab</a>
+  <nav aria-label="Sections" data-label="nav"><a href="./index.html" data-copy="examples">Examples</a><a href="#results" data-copy="research">Research</a></nav>
+  <button id="language" type="button" lang="zh-CN">简体中文</button>
+</div></header>
+<main id="content">
+  <div class="intro"><div class="frame">
+    <p class="kicker" data-copy="kicker">Execution research</p>
+    <h1 data-copy="title">From a trade plan to a filled order</h1>
+    <p class="lead" data-copy="lead">An atlas of the questions, findings, and evidence limits in an execution-cost study.</p>
+  </div></div>
+  <section id="results" class="frame section">
+    <div class="section-head"><h2 data-copy="results">Explore the research</h2><p data-copy="scope">Historical findings are presented as qualitative observations. The linked interactive examples use invented inputs.</p></div>
+    <div class="controls"><label for="topic"><span data-copy="theme">Topic</span><select id="topic">
+      <option value="all" data-copy="all">All topics</option>
+      <option value="cost" data-copy="cost">Cost and capacity</option>
+      <option value="timing" data-copy="timing">Order timing</option>
+      <option value="account" data-copy="account">Account constraints</option>
+      <option value="evidence" data-copy="evidence">Methods and evidence</option>
+    </select></label></div>
+    <div id="cards" class="atlas-grid" aria-live="polite"></div>
+  </section>
+</main>
+<footer class="frame footer"><a href="./index.html" data-copy="examples">Interactive examples</a><a href="#content" data-copy="top">Back to top</a></footer>
+</body>
+</html>

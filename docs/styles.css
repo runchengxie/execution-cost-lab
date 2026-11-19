@@ -52,3 +52,13 @@ h2{font:700 clamp(1.95rem,4vw,3.05rem)/1.13 Georgia,"Noto Serif CJK SC",serif;le
 .footer{display:flex;justify-content:space-between;gap:15px;padding:24px 0;color:var(--muted);font-size:.88rem}
 @media(max-width:620px){.frame{width:calc(100% - 32px)}.top-inner{min-height:58px;gap:12px}.top nav{display:none}.top button{margin-left:auto}.section{padding:40px 0}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}.controls{margin-top:17px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+.atlas-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.atlas-card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:22px}
+.atlas-card h3{font:700 1.45rem/1.25 Georgia,"Noto Serif CJK SC",serif;margin:0 0 10px}
+.atlas-card p{margin-bottom:12px}
+.atlas-topic{color:var(--green);font-size:.78rem;font-weight:750}
+.atlas-card .atlas-boundary{border-top:1px solid var(--line);padding-top:9px;color:var(--muted);font-size:.87rem}
+.atlas-card a{font-size:.86rem;color:var(--deep);font-weight:650}
+@media(max-width:680px){.atlas-grid{grid-template-columns:1fr}.atlas-card{padding:18px}}
+.atlas-link{display:inline-block;margin-top:22px;border:1px solid #a5beb0;border-radius:8px;color:#fffefa;padding:7px 12px;font-size:.92rem;font-weight:650;text-decoration:none}
+.atlas-link:hover{background:#ffffff18}
