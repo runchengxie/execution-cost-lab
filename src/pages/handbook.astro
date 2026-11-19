@@ -1,5 +1,6 @@
 ---
 import '../styles/styles.css';
+import SiteNav from '../components/SiteNav.astro';
 import ThemeControl from '../components/ThemeControl.astro';
 import * as english from '../content/handbook.en.md';
 import * as chinese from '../content/handbook.zh-CN.md';
@@ -21,10 +22,7 @@ const editions = [
   <a class="skip" href="#content"><span data-edition="en">Skip to content</span><span data-edition="zh-CN">跳到正文</span></a>
   <header class="top"><div class="frame top-inner">
     <a class="brand" href="./index.html"><span data-edition="en">Execution Cost Lab</span><span data-edition="zh-CN">交易执行实验室</span></a>
-    <nav aria-label="Research">
-      <a href="./index.html"><span data-edition="en">Interactive examples</span><span data-edition="zh-CN">交互案例</span></a>
-      <a href="./research.html"><span data-edition="en">Research atlas</span><span data-edition="zh-CN">研究总览</span></a>
-    </nav>
+    <SiteNav />
     <div class="preferences"><ThemeControl />
       <button id="language" type="button" lang="zh-CN">简体中文</button>
     </div>

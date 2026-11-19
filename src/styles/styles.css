@@ -184,3 +184,9 @@ html[lang="zh-CN"] [data-edition="en"] { display: none; }
 @media (max-width: 420px) {
   .atlas-link + .handbook-link { display: table; margin-inline-start: 0; }
 }
+
+.top nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.example-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: .92rem; }

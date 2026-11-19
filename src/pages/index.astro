@@ -1,5 +1,6 @@
 ---
 import '../styles/styles.css';
+import SiteNav from '../components/SiteNav.astro';
 import ThemeControl from '../components/ThemeControl.astro';
 ---
 <!doctype html>
@@ -15,7 +16,7 @@ import ThemeControl from '../components/ThemeControl.astro';
 <a class="skip" href="#content" data-copy="skip">Skip to content</a>
 <header class="top"><div class="frame top-inner">
   <a class="brand" href="#content" data-copy="brand">Execution Cost Lab</a>
-  <nav aria-label="Sections" data-label="sections"><a href="#cash" data-copy="navCash">Cash</a><a href="#capacity" data-copy="navCapacity">Capacity</a><a href="#cost" data-copy="navCost">Cost</a><a href="./research.html" data-copy="research">Research</a></nav>
+  <SiteNav current="examples" />
   <div class="preferences"><ThemeControl />
   <button id="language" type="button" lang="zh-CN">简体中文</button></div>
 </div></header>
@@ -23,7 +24,12 @@ import ThemeControl from '../components/ThemeControl.astro';
   <div class="intro"><div class="frame">
     <h1 data-copy="title">Why large orders go unfinished</h1>
     <p class="lead" data-copy="lead">Market volume, available cash, and time each set a different limit. Three synthetic examples show what happens when a trading plan meets those limits.</p>
-  <a class="atlas-link" href="./research.html" data-copy="openAtlas">Explore the research</a>
+    <nav class="example-links" aria-label="Examples" data-label="sections">
+      <a href="#cash" data-copy="navCash">Cash</a>
+      <a href="#capacity" data-copy="navCapacity">Capacity</a>
+      <a href="#cost" data-copy="navCost">Cost</a>
+    </nav>
+    <a class="atlas-link" href="./research.html" data-copy="openAtlas">Explore the research</a>
     <a class="atlas-link handbook-link" href="./research.html#private-reading" data-copy="readingTitle">Full research notes</a>
     <a class="atlas-link handbook-link" href="./handbook.html" data-copy="handbook">Read the methodology handbook</a>
   </div></div>
