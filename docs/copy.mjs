@@ -30,7 +30,7 @@ export const chinese = {
   skip: "跳到正文", brand: "交易执行实验室", sections: "页面章节",
   research: "研究总览", openAtlas: "浏览研究总览",
   navCash: "可用资金", navCapacity: "成交容量", navCost: "交易成本",
-  kicker: "交互式交易执行案例", title: "大额订单为什么做不完",
+  kicker: "交互式交易执行案例", title: "大额订单下单研究",
   lead: "市场成交量、可用资金和执行时间，都会限制一批订单能做多少。用三个合成案例看看这些限制如何影响结果。",
   cashTitle: "账上有钱，为什么还买不了",
   cashIntro: "一笔卖出已入账，三笔买单共用一个账户。切换回款可用时间和分配方式，看看每笔买单最后能做多少。",
