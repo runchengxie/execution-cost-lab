@@ -1,4 +1,9 @@
 export const english = {
+  worked: "Worked example",
+  cashWorked: "The default example starts with CNY 6,000 of spendable cash. The CNY 12,000 sale is booked but pending. At CNY 10 per share the account can buy 600 out of 1,800 shares. Switch the allocation to see how those 600 shares are distributed.",
+  capacityWorked: "At 5% participation, 52,000 observed shares provide a budget of 2,600 shares in five minutes, or 26% of a 10,000-share order. The 30-minute budget fills 7,800 shares under the same assumption.",
+  costWorked: "With a common 6,000-share fill, the rapid route costs CNY 204 in fees and price difference and the longer route CNY 168. In the full comparison the longer route fills 8,800 shares, so compare the fee and price costs alongside the cost of missed shares.",
+    themeLabel: "Appearance", themeSystem: "System", themeLight: "Light", themeDark: "Dark",
   skip: "Skip to content", brand: "Execution Cost Lab", sections: "Sections",
   research: "Research", openAtlas: "Explore the research",
   navCash: "Cash", navCapacity: "Capacity", navCost: "Cost",
@@ -27,6 +32,11 @@ export const english = {
 };
 
 export const chinese = {
+  worked: "用一组数字算一遍",
+  cashWorked: "默认情景里，可用现金为 6,000 元。卖出回款 12,000 元已入账，还没到可用时间。按每股 10 元算，1,800 股计划里只能买 600 股。切换分配方式，可以看到这 600 股如何分给三只股票。",
+  capacityWorked: "参与率设为 5%，前五分钟市场成交 52,000 股，模拟订单最多能做 2,600 股，占 10,000 股计划的 26%。同样口径下，三十分钟能做 7,800 股。",
+  costWorked: "把两条路线都截到同样的 6,000 股，快速路线的手续费和价差合计 204 元，延长路线为 168 元。完整情景里延长路线做了 8,800 股，要把已成交的费用、价差与未成交量的机会成本放在一起看。",
+    themeLabel: "外观", themeSystem: "跟随系统", themeLight: "浅色", themeDark: "深色",
   skip: "跳到正文", brand: "交易执行实验室", sections: "页面章节",
   research: "研究总览", openAtlas: "浏览研究总览",
   navCash: "可用资金", navCapacity: "成交容量", navCost: "交易成本",

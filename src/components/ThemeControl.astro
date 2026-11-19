@@ -1,0 +1,32 @@
+<script is:inline>
+  try {
+    const theme = localStorage.getItem("execution-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch {
+    // Without storage the site follows the system preference.
+  }
+</script>
+<label class="theme-control">
+  <span class="sr-only" data-copy="themeLabel">Appearance</span>
+  <select id="site-theme">
+    <option value="system" data-copy="themeSystem">System</option>
+    <option value="light" data-copy="themeLight">Light</option>
+    <option value="dark" data-copy="themeDark">Dark</option>
+  </select>
+</label>
+<script>
+  const control = document.querySelector<HTMLSelectElement>("#site-theme");
+  if (control) {
+    control.value = document.documentElement.dataset.theme ?? "system";
+    control.addEventListener("change", () => {
+      const theme = control.value;
+      if (theme === "system") delete document.documentElement.dataset.theme;
+      else document.documentElement.dataset.theme = theme;
+      try {
+        localStorage.setItem("execution-theme", theme);
+      } catch {
+        // The selected appearance still applies to this page.
+      }
+    });
+  }
+</script>
