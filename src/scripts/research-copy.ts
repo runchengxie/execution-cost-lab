@@ -1,6 +1,6 @@
 export const labels = {
   en: {
-    themeLabel: "Appearance", themeSystem: "System", themeLight: "Light", themeDark: "Dark",
+    handbook: "Read the methodology handbook", themeLabel: "Appearance", themeSystem: "System", themeLight: "Light", themeDark: "Dark",
     skip: "Skip to content", brand: "Execution Cost Lab", nav: "Sections", examples: "Interactive examples",
     research: "Research", kicker: "Execution research", title: "From a trade plan to a filled order",
     lead: "An atlas of the questions, findings, and evidence limits in an execution-cost study.",
@@ -9,7 +9,7 @@ export const labels = {
     account: "Account constraints", evidence: "Methods and evidence", boundary: "Evidence limit", detail: "Method and interpretation", top: "Back to top",
   },
   "zh-CN": {
-    themeLabel: "外观", themeSystem: "跟随系统", themeLight: "浅色", themeDark: "深色",
+    handbook: "阅读交易成本研究手册", themeLabel: "外观", themeSystem: "跟随系统", themeLight: "浅色", themeDark: "深色",
     skip: "跳到正文", brand: "交易执行实验室", nav: "页面章节", examples: "交互案例",
     research: "研究总览", kicker: "交易执行研究", title: "从交易计划到真正成交",
     lead: "把手续费、流动性、下单时点和共享账户放在一起看，每一步都说明证据能支持什么。",

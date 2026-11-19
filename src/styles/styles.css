@@ -148,3 +148,39 @@ details[open] > p { padding-top: 8px; }
   .example .takeaway { grid-area: note; margin-top: 0; }
   .example .worked { grid-area: worked; }
 }
+
+html[lang="en"] [data-edition="zh-CN"],
+html[lang="zh-CN"] [data-edition="en"] { display: none; }
+.atlas-link + .handbook-link { margin-inline-start: 16px; }
+.handbook-layout {
+  display: grid;
+  grid-template-columns: minmax(11rem, 1fr) minmax(0, 3.5fr);
+  align-items: start;
+  gap: 36px;
+  padding-block: 30px;
+}
+.handbook-nav { position: sticky; top: 24px; border-top: 1px solid var(--line); padding-top: 12px; font-size: .9rem; }
+.handbook-nav ol { padding-inline-start: 1.25rem; }
+.handbook-nav li + li { margin-top: 7px; }
+.handbook-prose h2 { padding-top: 22px; border-top: 1px solid var(--line); margin-top: 32px; }
+.handbook-prose h2:first-child { padding-top: 0; border: 0; margin-top: 0; }
+.handbook-prose p { max-width: 76ch; }
+.handbook-prose code { overflow-wrap: anywhere; }
+.handbook-prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin-block: 18px;
+  font-size: .9rem;
+  font-variant-numeric: tabular-nums;
+}
+.handbook-prose th, .handbook-prose td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.handbook-prose th { text-align: start; background: var(--panel); }
+@media (max-width: 760px) {
+  .handbook-layout { grid-template-columns: minmax(0, 1fr); gap: 15px; }
+  .handbook-nav { position: static; }
+}
+@media (max-width: 420px) {
+  .atlas-link + .handbook-link { display: table; margin-inline-start: 0; }
+}
