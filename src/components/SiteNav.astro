@@ -1,12 +1,8 @@
----
-interface Props { current?: "examples" | "research"; }
-const { current } = Astro.props;
----
-<nav aria-label="Site">
-  <a href="./index.html" aria-current={current === "examples" ? "page" : undefined}>
+<nav aria-label="Site" data-label="sections">
+  <a href="#examples">
     <span data-edition="en">Interactive examples</span><span data-edition="zh-CN">互动案例</span>
   </a>
-  <a href="./research.html" aria-current={current === "research" ? "page" : undefined}>
+  <a href="#research">
     <span data-edition="en">Research atlas</span><span data-edition="zh-CN">研究总览</span>
   </a>
 </nav>
