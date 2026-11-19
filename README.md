@@ -5,10 +5,11 @@
 Interactive teaching examples of shared cash, trading capacity, and execution
 costs. All inputs are synthetic and embedded in the model.
 
-Run `node --test` for the model checks. Run `python3 -m http.server --directory docs 8765`
-and open the local server to reproduce the page. JavaScript modules are served
-as static files. GitHub Pages publishes the `docs/` directory from `main`.
+Use Node.js 24 or newer. Run `npm ci` and `npm run dev`, then open
+`http://localhost:4321/execution-cost-lab/`. Run `npm test`, `npm run check`
+and `npm run build` to verify the project. GitHub Actions builds the Astro
+site from `main` and deploys the static output to GitHub Pages.
 
-The model in [docs/model.mjs](docs/model.mjs) defines opening cash and sale
+The [TypeScript model](src/scripts/model.ts) defines opening cash and sale
 proceeds, the market-volume budget, and the equal-share cost comparison.
 The charts update directly from that model.
