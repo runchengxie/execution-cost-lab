@@ -1,0 +1,92 @@
+---
+import '../styles/styles.css';
+const bundle = import.meta.env.BASE_URL.replace(/\/$/, '') + '/reading.enc';
+---
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>加密阅读 · Execution Cost Lab</title>
+</head>
+<body>
+  <header class="top"><div class="frame top-inner">
+    <a class="brand" href="./index.html">Execution Cost Lab</a>
+  </div></header>
+  <main class="frame section">
+    <section id="unlock">
+      <h1>加密阅读</h1>
+      <p class="lead">输入口令，在当前浏览器解锁研究资料。</p>
+      <form id="reading-form" data-bundle={bundle}>
+        <div class="controls">
+          <label>阅读口令
+            <input type="password" id="reading-password" required autocomplete="off" spellcheck="false">
+          </label>
+        </div>
+        <button type="submit">解锁</button>
+        <p role="status" id="reading-status"></p>
+      </form>
+    </section>
+    <section id="reader" hidden>
+      <button type="button" id="reading-lock">锁定</button>
+      <iframe id="reading-document" title="加密研究笔记" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+    </section>
+  </main>
+  <style>
+    input { background: var(--panel); color: var(--ink); border: 1px solid var(--line); padding: .6rem; font: inherit; width: min(28rem, 82vw); }
+    iframe { display: block; width: 100%; height: 83vh; border: 1px solid var(--line); margin-top: .75rem; background: var(--panel); }
+  </style>
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#reading-form")!;
+    const password = document.querySelector<HTMLInputElement>("#reading-password")!;
+    const status = document.querySelector<HTMLElement>("#reading-status")!;
+    const unlock = document.querySelector<HTMLElement>("#unlock")!;
+    const reader = document.querySelector<HTMLElement>("#reader")!;
+    const frame = document.querySelector<HTMLIFrameElement>("#reading-document")!;
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const lock = document.querySelector<HTMLButtonElement>("#reading-lock")!;
+
+    let documentUrl: string | undefined;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      submit.disabled = true;
+      status.textContent = "正在解锁…";
+      try {
+        const response = await fetch(form.dataset.bundle!, { credentials: "omit" });
+        if (!response.ok) throw new Error("Bundle unavailable");
+        const sealed = new Uint8Array(await response.arrayBuffer());
+        if (sealed.length <= 44) throw new Error("Invalid bundle");
+        const material = await crypto.subtle.importKey("raw", new TextEncoder().encode(password.value.trim()), "PBKDF2", false, ["deriveKey"]);
+        const key = await crypto.subtle.deriveKey(
+          { name: "PBKDF2", hash: "SHA-256", salt: sealed.slice(0, 16), iterations: 600_000 },
+          material, { name: "AES-GCM", length: 256 }, false, ["decrypt"],
+        );
+        const clear = await crypto.subtle.decrypt({ name: "AES-GCM", iv: sealed.slice(16, 28) }, key, sealed.slice(28));
+        documentUrl = URL.createObjectURL(new Blob([clear], { type: "text/html;charset=utf-8" }));
+        frame.src = documentUrl;
+        password.value = "";
+        unlock.hidden = true;
+        reader.hidden = false;
+        lock.focus();
+        status.textContent = "";
+      } catch {
+        status.textContent = "解锁失败。请检查口令和网络连接。";
+      } finally {
+        submit.disabled = false;
+      }
+    });
+
+    lock.addEventListener("click", () => {
+      frame.removeAttribute("src");
+      if (documentUrl) URL.revokeObjectURL(documentUrl);
+      documentUrl = undefined;
+      reader.hidden = true;
+      unlock.hidden = false;
+      password.focus();
+    });
+  </script>
+</body>
+</html>
