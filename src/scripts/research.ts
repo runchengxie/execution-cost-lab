@@ -23,13 +23,15 @@ function render() {
   container.replaceChildren();
   for (const [topic, example, en, zh] of studies) {
     if (filter.value !== "all" && topic !== filter.value) continue;
-    const [title, finding, limit] = locale === "en" ? en : zh;
+    const [title, finding, limit, method] = locale === "en" ? en : zh;
     const card = document.createElement("article");
     card.className = "atlas-card";
     card.append(line("p", copy[topic], "atlas-topic"), line("h3", title), line("p", finding));
     const boundary = line("p", limit, "atlas-boundary");
     boundary.prepend(line("strong", copy.boundary + " "));
-    card.append(boundary);
+    const details = document.createElement("details");
+    details.append(line("summary", copy.detail), line("p", method));
+    card.append(boundary, details);
     if (example) {
       const link = line("a", copy.examples);
       link.href = "./index.html#" + example;

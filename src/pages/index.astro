@@ -1,5 +1,6 @@
 ---
 import '../styles/styles.css';
+import ThemeControl from '../components/ThemeControl.astro';
 ---
 <!doctype html>
 <html lang="en">
@@ -15,16 +16,16 @@ import '../styles/styles.css';
 <header class="top"><div class="frame top-inner">
   <a class="brand" href="#content" data-copy="brand">Execution Cost Lab</a>
   <nav aria-label="Sections" data-label="sections"><a href="#cash" data-copy="navCash">Cash</a><a href="#capacity" data-copy="navCapacity">Capacity</a><a href="#cost" data-copy="navCost">Cost</a><a href="./research.html" data-copy="research">Research</a></nav>
-  <button id="language" type="button" lang="zh-CN">简体中文</button>
+  <div class="preferences"><ThemeControl />
+  <button id="language" type="button" lang="zh-CN">简体中文</button></div>
 </div></header>
 <main id="content">
   <div class="intro"><div class="frame">
-    <p class="kicker" data-copy="kicker">An interactive execution study</p>
     <h1 data-copy="title">Why large orders go unfinished</h1>
     <p class="lead" data-copy="lead">Market volume, available cash, and time each set a different limit. Three synthetic examples show what happens when a trading plan meets those limits.</p>
   <a class="atlas-link" href="./research.html" data-copy="openAtlas">Explore the research</a>
   </div></div>
-  <section id="cash" class="frame section">
+  <section id="cash" class="frame section example">
     <div class="section-head"><h2 data-copy="cashTitle">Cash on the ledger, cash you can use</h2><p data-copy="cashIntro">A sale is booked and three buy orders share one account. Change when the proceeds become usable and how the account divides its budget.</p></div>
     <div class="controls">
       <label><span data-copy="release">Sale proceeds</span><select id="release"><option value="delayed" data-copy="delayed">Still pending</option><option value="immediate" data-copy="immediate">Available now</option></select></label>
@@ -32,8 +33,9 @@ import '../styles/styles.css';
     </div>
     <div id="cashChart" class="panel" aria-live="polite"></div>
     <p class="takeaway" data-copy="cashNote">With cash constrained, both allocation rules buy the same total number of shares. The position shortfall can be concentrated in one order or spread across all three.</p>
+    <details class="worked"><summary data-copy="worked">Worked example</summary><p data-copy="cashWorked">The default example starts with CNY 6,000 of spendable cash. The CNY 12,000 sale is booked but pending. At CNY 10 per share the account can buy 600 out of 1,800 shares. Switch the allocation to see how those 600 shares are distributed.</p></details>
   </section>
-  <section id="capacity" class="frame section">
+  <section id="capacity" class="frame section example">
     <div class="section-head"><h2 data-copy="capacityTitle">Bigger orders need more liquidity</h2><p data-copy="capacityIntro">At a given participation rate, only a fraction of market volume is available to the simulated order. Change order size or participation to compare completion over time.</p></div>
     <div class="controls">
       <label><span data-copy="size">Order size</span><select id="size"><option value="4000" data-copy="small">4,000 shares</option><option value="10000" selected data-copy="large">10,000 shares</option></select></label>
@@ -41,12 +43,14 @@ import '../styles/styles.css';
     </div>
     <div id="capacityChart" class="panel" aria-live="polite"></div>
     <p class="takeaway" data-copy="capacityNote">This example treats a share of observed volume as an execution budget. Actual fills depend on prices, queue position, order limits and the market’s response.</p>
+    <details class="worked"><summary data-copy="worked">Worked example</summary><p data-copy="capacityWorked">At 5% participation, 52,000 observed shares provide a budget of 2,600 shares in five minutes, or 26% of a 10,000-share order. The 30-minute budget fills 7,800 shares under the same assumption.</p></details>
   </section>
-  <section id="cost" class="frame section">
+  <section id="cost" class="frame section example">
     <div class="section-head"><h2 data-copy="costTitle">Cost can rise when you fill more</h2><p data-copy="costIntro">A longer schedule completes more of the order. Compare all fills, then match share counts to see the difference in the cost of execution.</p></div>
     <div class="controls"><label><span data-copy="compare">Comparison</span><select id="comparison"><option value="full" data-copy="full">All fills</option><option value="matched" data-copy="matched">Same number of shares</option></select></label></div>
     <div id="costChart" class="panel" aria-live="polite"></div>
     <p class="takeaway" data-copy="costNote">Execution cost combines a fee and a price difference. Opportunity cost values unfilled shares at a common terminal price. It appears separately and may be negative.</p>
+    <details class="worked"><summary data-copy="worked">Worked example</summary><p data-copy="costWorked">With a common 6,000-share fill, the rapid route costs CNY 204 in fees and price difference and the longer route CNY 168. In the full comparison the longer route fills 8,800 shares, so compare the fee and price costs alongside the cost of missed shares.</p></details>
   </section>
   <section class="method">
     <div class="frame"><h2 data-copy="methodTitle">What is being measured?</h2><p data-copy="methodText">All inputs are invented for teaching. Completion is filled shares divided by requested shares. The budget model assumes 6 basis points in fees for the cost example. Price differences and terminal movement are scenario inputs. No real-order or market-impact estimate is made.</p><a href="https://github.com/runchengxie/execution-cost-lab" data-copy="source">Source code and reproduction</a></div>

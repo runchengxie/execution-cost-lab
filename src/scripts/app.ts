@@ -70,7 +70,7 @@ function displayCost() {
   const matched = valueOf("comparison") === "matched";
   const data = costScenario(matched);
   const max = Math.max(...data.map((row) => row.total));
-  const colors = [["fee", "#2d6d56"], ["price", "#79a18d"], ["opp", "#c48548"]] as const;
+  const colors = [["fee", "var(--fee)"], ["price", "var(--price)"], ["opp", "var(--opportunity)"]] as const;
   const legend = colors.filter(([key]) => !matched || key !== "opp")
     .map(([key, color]) => `<span style="--key:${color}">${terms[key]}</span>`).join("");
   const rows = data.map((row, i) => {
