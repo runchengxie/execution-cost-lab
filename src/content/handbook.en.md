@@ -41,6 +41,8 @@ Separate the auction uncross from continuous-session arrival. Auction prints des
 
 A trigger can use only quotes available at the decision. Record orders whose trigger never fired and what happens at timeout. For passive posting, a book touching the limit does not establish a fill ahead of the resting queue. Report completion, matched execution cost and opportunity cost separately.
 
+At a 60-second start, specify which prints earn credit for the first order. For example, suppose 12,000 shares trade in the first half-minute and 8,000 in the second. A 5% limit gives 400 shares of initial credit using the last half-minute, or 1,000 using the full minute. Compare both conventions with the same cutoff and demand. Use time slices, a historical volume curve and fixed participation as separate baselines.
+
 ## From book capacity to basket capacity
 
 One simple proxy multiplies observed volume by a participation cap. In the homepage example, 52,000 printed shares at 5% allow 2,600 shares in five minutes. That budget covers 65% of a 4,000-share order and 26% of a 10,000-share order. In time-ordered replay, apply the limit, available depth and accrued volume budget at each decision. Future prints are unavailable to the order.
@@ -63,6 +65,8 @@ After each sale, update booked cash, available cash and pending proceeds. Check 
 
 The homepage model allocates individual shares and distributes the remainder after rounding. To measure weight gaps, value residuals at the same reference marks and divide by account equity. With cash available to cover all executable buys, fixed, proportional and largest-gap priority can agree. Distinguishing the rules requires genuinely cash-constrained cases while keeping displayed liquidity as a separate limit.
 
+At the checkpoint, compare the cash needed for remaining buys with spendable cash. If booked proceeds will become available before the later cutoff, test extending only the affected buys. Use the same terminal mark for the stopped and extended routes. Report whether buys and sells each met the completion target before comparing cost.
+
 ## L2 replay and own impact
 
 Replay order-book updates, trades and account events in availability order. Audit timestamps, duplicates, gaps and session boundaries. Specify whether the simulation sweeps visible depth, infers queue depletion from prints, or does both. Shared simulated orders should not consume the same displayed liquidity twice.
@@ -76,6 +80,8 @@ Replay order-book updates, trades and account events in availability order. Audi
 | Own impact | Separate size or participation scenarios and changes in route ranking |
 
 Historical replay measures available liquidity under order and queue assumptions. Simulated orders cannot change the historical record. Own-impact calibration needs linked live submissions, executions and market observations, with controls for the market’s own movement. A public impact scenario shows sensitivity to the assumption.
+
+For a sensitivity test, add an illustrative surcharge that increases with child-order size and record where the cost ranking changes. State whether the surcharge leaves fills and cash fixed or changes later decisions. The assumed surcharge is a scenario input.
 
 ## Multiple routes, non-convex search and new evidence
 
